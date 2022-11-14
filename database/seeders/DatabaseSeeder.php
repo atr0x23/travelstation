@@ -15,10 +15,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // creates 10 users
-        // \App\Models\User::factory(10)->create();
+         \App\Models\User::factory()->count(10)->create();
 
         // creates 10 posts
-         \App\Models\Post::factory()->count(10)->create();
+        // \App\Models\Post::factory()->count(10)->create();
 
     }
 }
