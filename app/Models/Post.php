@@ -3,14 +3,13 @@
 namespace App\Models;
 
 use App\Models\User;
-use App\Lib\HasLikes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Post extends Model
 //class Post implements Likeable
 {
-    use HasFactory, HasLikes;
+    use HasFactory;
 
     protected $fillable = [
         'title',
@@ -22,5 +21,13 @@ class Post extends Model
         public function user(){
 
             return $this->belongsTo(User::class);
+        }
+
+        //set the relationship with like/dislike
+        public function likes(){
+            return $this->hasMany('App\Models\LikeDislike', 'post_id')->sum('like');
+        }
+        public function dislikes(){
+            return $this->hasMany('App\Models\LikeDislike', 'post_id')->sum('dislike');
         }
 }

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeHateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ Route::get('/list', [PostController::class,'index'])->name('posts.list');
 Route::get('/byuser/{id}', [PostController::class,'filter_by_user'])->name('post.filter_by_user');
 /** Sort the movies by date added. */
 Route::get('/bydate', [PostController::class,'sort_by_date'])->name('list');
+/** sort the movies by likes */
+//Route::get('/bylikes', [LikeHateController::class,'sort_by_likes'])->name('posts.bylike');
 
 /* routes for registered users */
 Route::middleware('auth')->group(function(){
@@ -33,8 +36,9 @@ Route::middleware('auth')->group(function(){
     Route::get('/create', [PostController::class,'create'])->name('posts.create');
     Route::post('/post/store', [PostController::class, 'store'])->name('post.store');
     Route::get('/list/byuser/{id}', [PostController::class, 'filter_by_user'])->name('posts.list');
-    Route::resource('post', PostController::class);
-
+    // route for like or dislike
+    Route::post('save-likedislike', [PostController::class, 'save_likedislike'])->name('like.dislike');
+    //Route::post('post/like/{id}', [PostController::class, 'save_likedislike'])->name('like.dislike');
 });
 
 

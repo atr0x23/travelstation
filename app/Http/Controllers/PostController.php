@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Lib\HasLikes;
+use App\Models\LikeDislike;
 
 class PostController extends Controller
 {
-    use HasLikes;
     /**
      * Display a listing of the resource.
      *
@@ -119,4 +118,22 @@ class PostController extends Controller
         return view('posts.list', ['posts'=> $posts]); 
 
     }
+
+        //Save Like Or Dislike
+        function save_likedislike(Request $request){
+            
+            $data=new LikeDislike;
+
+            $data->post_id=$request->post;
+            if($request->type=='like'){
+                $data->like=1;
+            }else{
+                $data->dislike=1;
+            }
+
+            $data->save();
+            
+            return response()->json(['bool'=>true]);
+        }
+
 }
