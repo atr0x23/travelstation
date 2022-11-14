@@ -20,7 +20,7 @@
             <div class="card border-secondery mb-3">
                 <div class="card-header d-flex justify-content-between">
                     <h3>{{ $post->title }}</h3>
-                    <div>By <a href="{{route('post.filter_by_user', $post->user_id)}}">{{$post->user->name}}</a></div>
+                    <div>By <a href="{{route('post.filter_by_user', $post->user_id)}}"> {{$post->user->name}} </a></div>
                 </div>
 
                 <div class="card-body">
@@ -30,7 +30,7 @@
                 <div class="card-footer d-flex justify-content-between">
                     <div><span class="like-count">likes {{$post->likes()}}</span> | <span class="dislike-count"> hates {{$post->dislikes()}} </span></div>
 
-                    @if (Auth::user() && $post->user->name != Auth::user()->name)
+                    @if (Auth::user()&& $post->user->name != Auth::user()->name)
                     <small>
                         <span title="likes" id="saveLikeDislike" data-type="like" data-post="{{$post->id}}" class="mr-2 btn btn-sm btn-outline-primary d-inline font-weight-bold">
                         Like <!-- <span> $post->likes()}} </span> -->

@@ -13,7 +13,9 @@ class LikeDislike extends Model
     protected $fillable = [
         'post_id',
         'like',
-        'dislike'
+        'dislike',
+        'hasliked',
+        'hasdisliked'
     ];
 
             //set the relationship

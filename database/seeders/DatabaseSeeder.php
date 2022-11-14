@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // creates 10 users
         // \App\Models\User::factory(10)->create();
+
+        // creates 10 posts
+         \App\Models\Post::factory()->count(10)->create();
+
     }
 }
