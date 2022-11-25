@@ -16,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        //$posts = Post::all();
+        $posts = Post::paginate(3);
         //$posts = DB::table('posts')->get();
         //dd($posts);
         return view('posts.list', ['posts'=> $posts]);
@@ -101,7 +102,7 @@ class PostController extends Controller
     public function filter_by_user($id){
 
         //$movies = Movie::findOrFail($id);
-        $posts = Post::where('user_id', $id)->get();
+        $posts = Post::where('user_id', $id)->paginate(3);
 
         //dd($movies);
 
@@ -113,7 +114,7 @@ class PostController extends Controller
        // sort movies by date desc
        public function sort_by_date(){
 
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(3);
         
         return view('posts.list', ['posts'=> $posts]); 
 
